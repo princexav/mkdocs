@@ -33,12 +33,22 @@ Welcome to the **HealthPulse Portal** DevOps documentation site. This documentat
 
 ## Quick Links
 
+### Documentation
+
+| Page | What It's For |
+|------|---------------|
+| [Architecture Decisions](architecture.md) | ADRs for CI/CD platform, orchestration, etc. |
+| [Environment Matrix](environments.md) | Dev/UAT/QA/Prod IPs, URLs, sizing |
+| [CI/CD Pipeline](pipeline.md) | Pipeline stages, tools, config notes |
+| [Setup Template](setup-template.md) | Copy this for each tool you install (Jenkins, SonarQube, etc.) |
+| [Runbooks](runbooks.md) | Deploy, rollback, scale, incident response |
+| [Incident Log](incidents.md) | Track every issue and how you fixed it |
+| [Changelog](changelog.md) | What was built, when, and by whom |
+
+### External Tools
+
 | Resource | Link |
 |----------|------|
-| Architecture Decisions | [ADRs](architecture.md) |
-| Environment Matrix | [Environments](environments.md) |
-| Runbooks | [Operational Runbooks](runbooks.md) |
-| CI/CD Pipeline | [Pipeline Docs](pipeline.md) |
 | Application Repo | _`<link to HealthPulse_App repo>`_ |
 | Deployment Repo | _`<link to HealthPulse_Deployment repo>`_ |
 | Datadog Dashboard | _`<link to Datadog>`_ |

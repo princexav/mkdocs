@@ -26,10 +26,16 @@ theme:
 
 nav:
   - Home: index.md
-  - Architecture Decisions: architecture.md
-  - Environment Matrix: environments.md
-  - Runbooks: runbooks.md
-  - CI/CD Pipeline: pipeline.md
+  - Architecture:
+      - Decisions (ADRs): architecture.md
+      - Environment Matrix: environments.md
+      - CI/CD Pipeline: pipeline.md
+  - Setup Guides:
+      - Template (copy for each tool): setup-template.md
+  - Operations:
+      - Runbooks: runbooks.md
+      - Incident Log: incidents.md
+  - Changelog: changelog.md
 
 markdown_extensions:
   - tables
