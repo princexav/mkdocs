@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: healthpulse-dev
+  labels:
+    app: healthpulse
+    environment: dev
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: healthpulse-qa
+  labels:
+    app: healthpulse
+    environment: qa
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: healthpulse-prod
+  labels:
+    app: healthpulse
+    environment: prod
