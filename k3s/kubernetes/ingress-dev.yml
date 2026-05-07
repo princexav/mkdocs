@@ -1,0 +1,28 @@
+# =============================================================
+#  HealthPulse Portal — Ingress (Dev on k3s)
+#
+#  Routes:  k8s.team-healthpulse.com → healthpulse-service
+#  Apply:   kubectl apply -f kubernetes/ingress-dev.yml
+#
+#  k3s includes Traefik as the default ingress controller —
+#  no extra installation needed.
+# =============================================================
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: healthpulse-ingress
+  namespace: healthpulse-dev
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: k8s.team-healthpulse.com    # ← Replace with YOUR domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: healthpulse-service
+                port:
+                  number: 80

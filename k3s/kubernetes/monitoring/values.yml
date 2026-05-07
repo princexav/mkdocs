@@ -1,0 +1,83 @@
+# =============================================================
+#  HealthPulse Portal — Prometheus + Grafana Helm Values
+#
+#  This file customizes the kube-prometheus-stack Helm chart.
+#  Install with:
+#    helm install monitoring prometheus-community/kube-prometheus-stack \
+#      --namespace monitoring --create-namespace \
+#      -f kubernetes/monitoring/values.yml
+#
+#  Or use the defaults (without this file):
+#    helm install monitoring prometheus-community/kube-prometheus-stack \
+#      --namespace monitoring --create-namespace \
+#      --set grafana.adminPassword=healthpulse123
+# =============================================================
+
+# ─────────────── GRAFANA ───────────────
+grafana:
+  # Admin credentials (change in production!)
+  adminUser: admin
+  adminPassword: healthpulse123
+
+  # Resource limits appropriate for t3.small nodes
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 300m
+      memory: 256Mi
+
+  # Grafana service type — use ClusterIP and port-forward for access
+  service:
+    type: ClusterIP
+
+# ─────────────── PROMETHEUS ───────────────
+prometheus:
+  prometheusSpec:
+    # Keep metrics for 7 days (default is 10d)
+    retention: 7d
+
+    # Resource limits for small cluster
+    resources:
+      requests:
+        cpu: 200m
+        memory: 512Mi
+      limits:
+        cpu: 500m
+        memory: 1Gi
+
+    # Storage — use emptyDir for capstone (data lost on pod restart)
+    # For production, use a PersistentVolumeClaim
+    storageSpec: {}
+
+# ─────────────── ALERTMANAGER ───────────────
+alertmanager:
+  alertmanagerSpec:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+
+# ─────────────── NODE EXPORTER ───────────────
+nodeExporter:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 32Mi
+    limits:
+      cpu: 100m
+      memory: 64Mi
+
+# ─────────────── KUBE-STATE-METRICS ───────────────
+kube-state-metrics:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi

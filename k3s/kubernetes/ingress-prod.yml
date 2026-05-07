@@ -1,0 +1,28 @@
+# =============================================================
+#  HealthPulse Portal — Ingress (Production)
+#
+#  Routes:  prod.team-healthpulse.com → healthpulse-service
+#  Apply:   kubectl apply -f kubernetes/ingress-prod.yml
+#
+#  k3s includes Traefik as the default ingress controller —
+#  no extra installation needed.
+# =============================================================
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: healthpulse-ingress
+  namespace: healthpulse-prod
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: prod.team-healthpulse.com    # ← Replace with YOUR domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: healthpulse-service
+                port:
+                  number: 80
